@@ -1,4 +1,3 @@
-import openpyxl
 from selenium import webdriver
 import time
 import os
@@ -8,12 +7,25 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv, find_dotenv
 
-
 _ = load_dotenv(find_dotenv())
 username = os.environ.get('github_username')
 password = os.environ.get('github_password')
 
 browser = webdriver.Chrome()
+# browser.get("https://github.com/login")
+
+
+# username_field = browser.find_element(By.ID, "login_field")
+# username_field.send_keys(username)
+
+# password_field = browser.find_element(By.ID, "password")
+# password_field.send_keys(password)
+
+# username_field.submit()
+
+# send_sms_button = browser.find_element(By.CLASS_NAME, "js-octocaptcha-form-submit")
+# send_sms_button.submit()
+
 
 browser.get(f"https://github.com/{username}?tab=repositories")
 
@@ -43,34 +55,17 @@ while True:
     
     next_button = browser.find_element(By.XPATH, "//a[@rel='next']")
     next_button.click()
+    
 
 print(all_repository_names)
-
-# Load the workbook
-wb = openpyxl.load_workbook('../selenium-app/Selenium_Automation_App/data_file.xlsx')
-
-# Select the active worksheet
-working_sheet = wb.active
-
-# Create a new workbook to store the updated data
-new_wb = openpyxl.Workbook()
-new_working_sheet = new_wb.active
-
-# Copy headers from original worksheet to new worksheet
-for col in range(1, working_sheet.max_column + 1):
-    new_working_sheet.cell(row=1, column=col, value=working_sheet.cell(row=1, column=col).value)
-
-# Iterate through column A and fill column B accordingly in the new worksheet
-for row in working_sheet.iter_rows(min_row=2, max_col=1, max_row=working_sheet.max_row):
-    name = row[0].value
-    if name in all_repository_names:
-        new_working_sheet.append([name, 'Yes'])
-    else:
-        new_working_sheet.append([name, 'No'])
-
-
-# Save the new workbook
-new_wb.save('updated_data_file.xlsx')
+if "JavaScript-Core-1-Coursework-Week4-London10" in all_repository_names:
+    print("Found")
+else:
+    print("Not found")
 
 browser.quit() 
+
+
+
+
 

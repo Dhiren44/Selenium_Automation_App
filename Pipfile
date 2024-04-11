@@ -5,9 +5,8 @@ name = "pypi"
 
 [packages]
 openpyxl = "*"
-requests = "*"
-beautifulsoup4 = "*"
 selenium = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

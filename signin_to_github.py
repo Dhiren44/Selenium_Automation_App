@@ -12,19 +12,6 @@ username = os.environ.get('github_username')
 password = os.environ.get('github_password')
 
 browser = webdriver.Chrome()
-# browser.get("https://github.com/login")
-
-
-# username_field = browser.find_element(By.ID, "login_field")
-# username_field.send_keys(username)
-
-# password_field = browser.find_element(By.ID, "password")
-# password_field.send_keys(password)
-
-# username_field.submit()
-
-# send_sms_button = browser.find_element(By.CLASS_NAME, "js-octocaptcha-form-submit")
-# send_sms_button.submit()
 
 
 browser.get(f"https://github.com/{username}?tab=repositories")
